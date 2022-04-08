@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { publicRequest } from "../config";
+import { publicRequest } from "./config";
 import { format } from "timeago.js";
 import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
