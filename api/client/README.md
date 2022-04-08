@@ -1,9 +1,6 @@
-# How to deploy apps for free
+# Deploying Full-Stack Apps with Socket.IO
 
-Deploying single react applications and full-stack web applications using Heroku and Netlify.
-
-# Deploying Full-Stack Apps
-
+0. Create app.js and import app module from app.js to index.js(main file).
 1. Create a Heroku app.
 2. Change your Node app port to
 
@@ -56,4 +53,13 @@ git commit -am "my first commit"
 
 ```bash
 git push heroku HEAD:master
+```
+
+
+```bash
+Check Point
+1,ONLY api not Readme
+2,npm i path
+3,config path
+4,proxy deleted
 ```
