@@ -8,6 +8,8 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import StarIcon from "@mui/icons-material/Star";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import mapboxgl from 'mapbox-gl';
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
 const App = () => {
   const myStorage = window.localStorage;
