@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import { publicRequest } from "../config";
 import "./login.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -16,7 +16,7 @@ const Login = ({ setShowLogin, myStorage, setCurrentUsername }) => {
       password: passwordRef.current.value,
     };
     try {
-      const res = await axios.post("/users/login", user);
+      const res = await publicRequest.post("/users/login", user);
       setCurrentUsername(res.data.username);
       myStorage.setItem("user", res.data.username);
       setShowLogin(false);

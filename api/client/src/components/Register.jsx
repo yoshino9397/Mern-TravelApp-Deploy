@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import { publicRequest } from "../config";
 import "./register.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -20,7 +20,7 @@ const Register = ({ setShowRegister }) => {
     };
 
     try {
-      await axios.post("/users/register", newUser);
+      await publicRequest.post("/users/register", newUser);
       setError(false);
       setSuccess(true);
     } catch (err) {

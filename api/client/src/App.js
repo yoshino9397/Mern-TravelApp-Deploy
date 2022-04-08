@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { publicRequest } from "./config";
 import { format } from "timeago.js";
 import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -8,6 +8,8 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import StarIcon from "@mui/icons-material/Star";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import mapboxgl from 'mapbox-gl';
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
 const App = () => {
   const myStorage = window.localStorage;
@@ -33,7 +35,7 @@ const App = () => {
   useEffect(() => {
     const getPins = async () => {
       try {
-        const allPins = await axios.get("/pins");
+        const allPins = await publicRequest.get("/pins");
         setPins(allPins.data);
       } catch (err) {
         console.log(err);
@@ -67,7 +69,7 @@ const App = () => {
       long: newPlace.long,
     };
     try {
-      const res = await axios.post("/pins", newPin);
+      const res = await publicRequest.post("/pins", newPin);
       setPins([...pins, res.data]);
       setNewPlace(null);
     } catch (err) {
