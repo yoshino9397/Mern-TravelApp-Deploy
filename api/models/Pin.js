@@ -17,6 +17,9 @@ const PinSchema = new mongoose.Schema(
       required: true,
       min: 3,
     },
+    img: {
+      type: String,
+    },
     rating: {
       type: Number,
       required: true,
