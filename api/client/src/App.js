@@ -8,18 +8,22 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import StarIcon from "@mui/icons-material/Star";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import mapboxgl from 'mapbox-gl';
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
+import Loading from "./components/Loading";
+import mapboxgl from "mapbox-gl";
+mapboxgl.workerClass =
+  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; // eslint-disable-line
 
 const App = () => {
   const myStorage = window.localStorage;
   const [currentUsername, setCurrentUsername] = useState(
     myStorage.getItem("user")
   );
+  const [loading, setLoading] = useState(false);
   const [newPlace, setNewPlace] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [star, setStar] = useState(0);
+  const [file, setFile] = useState(null);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [pins, setPins] = useState([]);
   const [showRegister, setShowRegister] = useState(false);
@@ -60,18 +64,30 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPin = {
-      username: currentUsername,
-      title,
-      desc,
-      rating: star,
-      lat: newPlace.lat,
-      long: newPlace.long,
-    };
+    setLoading(true);
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "uploads");
+
     try {
+      const uploadRes = await publicRequest.post(
+        "https://api.cloudinary.com/v1_1/dz47zx0rk/image/upload",
+        data
+      );
+      const { url } = uploadRes.data;
+      const newPin = {
+        username: currentUsername,
+        title,
+        desc,
+        img: url,
+        rating: star,
+        lat: newPlace.lat,
+        long: newPlace.long,
+      };
       const res = await publicRequest.post("/pins", newPin);
       setPins([...pins, res.data]);
       setNewPlace(null);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -134,6 +150,10 @@ const App = () => {
                   <div className="stars">
                     {Array(p.rating).fill(<StarIcon className="star" />)}
                   </div>
+                  <label>Photo</label>
+                  <div className="photo">
+                    <img src={p.img} alt="" className="image" />
+                  </div>
                   <label>Info</label>
                   <span className="username">
                     Created by <b className="texts">{p.username}</b>
@@ -174,6 +194,14 @@ const App = () => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
+                <label>Photo</label>
+                <label className="shareOption">
+                  <input
+                    type="file"
+                    id="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                </label>
                 <button className="submitButton" type="submit">
                   Add Pin
                 </button>
@@ -207,6 +235,7 @@ const App = () => {
             </button>
           </div>
         )}
+        {loading && <Loading />}
         {showRegister && <Register setShowRegister={setShowRegister} />}
         {showLogin && (
           <Login
