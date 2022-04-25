@@ -134,22 +134,6 @@ textarea {
   background-color: #819cbe;
 }
 
-.shareImgContainer{
-  position: relative;
-  
-}
-.shareImg{
-  width: 100%;
-  object-fit: cover;
-}
-.shareCancelImg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  opacity: 0.7;
-}
-
 .shareOption{
   border-bottom: none;
 }
@@ -157,5 +141,7 @@ textarea {
   position: relative;
 }
 .image{
-  width: 100%;
+  width: 70%;
+  height:150px;
+  object-fit: cover;
 }
