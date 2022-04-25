@@ -6,8 +6,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./app.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import StarIcon from "@mui/icons-material/Star";
-import CancelIcon from "@mui/icons-material/Cancel";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Loading from "./components/Loading";
@@ -16,7 +14,6 @@ mapboxgl.workerClass =
   require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default; // eslint-disable-line
 
 const App = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const myStorage = window.localStorage;
   const [currentUsername, setCurrentUsername] = useState(
     myStorage.getItem("user")
