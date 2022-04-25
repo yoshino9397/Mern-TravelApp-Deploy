@@ -136,6 +136,7 @@ textarea {
 
 .shareOption{
   border-bottom: none;
+  padding: 10px 0;
 }
 .photo{
   position: relative;
@@ -144,4 +145,16 @@ textarea {
   width: 70%;
   height:150px;
   object-fit: cover;
+}
+
+.labelAdd{
+  background-color: #295d72;
+  color: rgb(231, 228, 228);
+  padding: 5px 10px;
+  margin:30px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+input[type="file"] {
+  display: none;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { publicRequest } from "./config";
 import { format } from "timeago.js";
+import $ from "jquery";
 import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./app.css";
@@ -97,6 +98,11 @@ const App = () => {
     setCurrentUsername(null);
     myStorage.removeItem("user");
   };
+
+  $("input").on("change", function () {
+    var file = $(this).prop("files")[0];
+    $(".shareOptionAdd").text(file.name);
+  });
 
   return (
     <>
@@ -196,11 +202,15 @@ const App = () => {
                 </select>
                 <label>Photo</label>
                 <label className="shareOption">
+                  <label htmlFor="file" className="labelAdd">
+                    Add Pic
+                  </label>
                   <input
                     type="file"
                     id="file"
                     onChange={(e) => setFile(e.target.files[0])}
                   />
+                  <span className="shareOptionAdd">Not selected</span>
                 </label>
                 <button className="submitButton" type="submit">
                   Add Pin
