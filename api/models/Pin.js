@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const PinSchema = new mongoose.Schema(
   {
@@ -41,4 +41,4 @@ const PinSchema = new mongoose.Schema(
   ///ある値が作られた時間を記録するもの。サーバー側からもクライアント側からも使用することができる。
 );
 
-module.exports = mongoose.model("Pin", PinSchema);
+export default mongoose.model("Pin", PinSchema);

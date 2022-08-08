@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -25,4 +25,4 @@ const UserSchema = new mongoose.Schema(
   ///ある値が作られた時間を記録するもの。サーバー側からもクライアント側からも使用することができる。
 );
 
-module.exports = mongoose.model("User", UserSchema);
+export default mongoose.model("User", UserSchema);

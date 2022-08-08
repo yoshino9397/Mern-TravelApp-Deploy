@@ -1,11 +1,11 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const app = express();
-const userRoute = require("./routes/users");
-const pinRoute = require("./routes/pins");
-const path = require("path");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import userRoute from "./routes/users.js";
+import pinRoute from "./routes/pins.js";
+import path from "path";
 
+const app = express();
 dotenv.config();
 app.use(express.json());
 
