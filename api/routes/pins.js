@@ -1,6 +1,5 @@
-import express from "express";
-import Pin from "../models/Pin.js";
-const router= express.Router();
+const router = require("express").Router();
+const Pin = require("../models/Pin");
 
 //create a pin
 router.post("/", async (req, res) => {
@@ -23,4 +22,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
