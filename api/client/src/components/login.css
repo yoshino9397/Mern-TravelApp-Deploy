@@ -19,9 +19,9 @@ input::placeholder {
   align-items: center;
   justify-content: space-around;
 }
-input{
+input {
   margin-bottom: 15px;
-  padding: 12px
+  padding: 12px;
 }
 
 .loginCancel {
