@@ -133,7 +133,7 @@ const App = () => {
               <PushPinIcon
                 sx={{
                   fontSize: viewState.zoom * 7,
-                  color: currentUsername === p.username ? "#c42034" : "#4b666e",
+                  color: currentUsername === p.username ? "#c42034" : "#00a3af",
                   cursor: "pointer",
                 }}
                 onClick={() => handleMarkerClick(p._id, p.lat, p.long)}
