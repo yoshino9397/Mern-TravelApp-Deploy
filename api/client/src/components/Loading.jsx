@@ -23,7 +23,7 @@ const Loading = () => {
           fontFamily: "Barrio",
         }}
       >
-        Loading...
+        Making your world...
       </h1>
     </div>
   );
